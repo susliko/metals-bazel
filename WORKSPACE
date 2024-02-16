@@ -38,7 +38,13 @@ scala_config("3.3.0")
 
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
+load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
+scala_register_toolchains()
 register_toolchains("//:toolchain")
+
+load("@io_bazel_rules_scala//testing:scalatest.bzl", "scalatest_repositories", "scalatest_toolchain")
+scalatest_repositories()
+scalatest_toolchain()
 
 scala_repositories()
 
@@ -66,6 +72,7 @@ maven_install(
     artifacts = [
         "org.typelevel:cats-effect_3:3.5.2",
         "org.typelevel:cats-core_3:2.9.0",
+        "org.scalatest:scalatest_3:3.2.11",
     ],
     repositories = [
         "https://maven.google.com",

@@ -1,4 +1,6 @@
 load("@io_bazel_rules_scala//scala:scala_toolchain.bzl", "scala_toolchain")
+load("@io_bazel_rules_scala//testing/toolchain:toolchain.bzl", "scala_testing_toolchain")
+load("@io_bazel_rules_scala//scala:providers.bzl", "declare_deps_provider")
 
 scala_toolchain(
     name = "toolchain-scala_toolchain",
@@ -29,3 +31,22 @@ toolchain(
 )
 
 
+# scala_testing_toolchain(
+#     name = "scala_testing_toolchain_impl",
+#     dep_providers = [
+#         ":scala_testing_classpath_provider",
+#     ],
+# )
+#
+# toolchain(
+#     name = "scala_testing_toolchain",
+#     toolchain = ":scala_testing_toolchain_impl",
+#     toolchain_type = "@io_bazel_rules_scala//testing/toolchain:testing_toolchain_type",
+# )
+#
+# declare_deps_provider(
+#     name = "scala_testing_classpath_provider",
+#     deps_id = "scalatest_classpath",
+#     visibility = ["//visibility:public"],
+#     deps = [ "@maven//:org_scalatest_scalatest_3" ],
+# )

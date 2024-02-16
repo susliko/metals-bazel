@@ -11,3 +11,13 @@ scala_binary(
     ]
 )
 
+scala_test(
+    name = "gogotest",
+    srcs = glob(["src/test/scala/**/*.scala"]),
+    deps = [
+      "@maven//:org_typelevel_cats_core_3",
+      "@maven//:org_typelevel_cats_effect_3",
+      "@maven//:org_scalatest_scalatest_3",
+    ]
+)
+
