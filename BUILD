@@ -1,0 +1,31 @@
+load("@io_bazel_rules_scala//scala:scala_toolchain.bzl", "scala_toolchain")
+
+scala_toolchain(
+    name = "toolchain-scala_toolchain",
+    scalacopts = [
+                "-encoding",
+                "UTF-8",
+                "-feature",
+                "-unchecked",
+                "-deprecation",
+                "-language:existentials",
+                "-language:higherKinds",
+                "-language:implicitConversions",
+                "-Wunused:all"
+                # "-Ytasty-reader"
+            ],
+    visibility = ["//visibility:public"],
+    dependency_tracking_method = "ast",
+    enable_diagnostics_report = True,
+    dependency_mode = "plus-one",
+    enable_semanticdb = True,
+)
+
+toolchain(
+    name = "toolchain",
+    toolchain = "toolchain-scala_toolchain",
+    toolchain_type = "@io_bazel_rules_scala//scala:toolchain_type",
+    visibility = ["//visibility:public"],
+)
+
+
